@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Tasks</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input{
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select {
+            height: 40px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .submit-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+        
+        #container {
+            position: relative;
+            width: 100%;
+            /* Adjust the width as needed */
+            height: 200px;
+            /* Adjust the height as needed */
+            overflow: hidden;
+        }
+
+        #moving-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: moveRight 4s linear infinite;
+        }
+
+        @keyframes moveRight {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .login-box {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+
+        .login-input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Task 1 -->
+    <h1>Task 1</h1>
+    <form>
+        <label for="task-1-number">Enter something to get it reversed:</label><br /><br />
+        <input type="number" id="task-1-number" oninput="reverseNumber()" />
+    </form>
+    <p id="task-1"></p>
+    <script type="text/javascript">
+        function reverseNumber() {
+            const inputNumber = document.getElementById('task-1-number');
+            const para = document.getElementById('task-1');
+            para.innerText = inputNumber.value ? `Reversed Number: ${inputNumber.value.split("").reverse().join("")}` : "";
+        }
+    </script>
+    <!-- Task 1 ends here -->
+    <br />
+    <hr><br />
+
+
+    <!-- Task 2 -->
+    <h1>Task 2</h1>
+    <form>
+        <label for="task-2-text">Enter something to sort it alphabetically:</label><br /><br />
+        <input type="text" id="task-2-text" oninput="sortAlpha()" />
+    </form>
+    <p id="task-2"></p>
+    <script type="text/javascript">
+        function sortAlpha() {
+            const inputText = document.getElementById('task-2-text');
+            const para = document.getElementById('task-2');
+            para.innerText = inputText.value ? `Sorted Alphabets: ${inputText.value.split("").sort().join("")}` : "";
+        }
+    </script>
+    <!-- Task 2 ends here -->
+    <br />
+    <hr><br />
+
+    <!-- Task 3 -->
+    <h1>Task 3</h1>
+    <form>
+        <label for="task-3-number-1">Enter the first Number: </label><br /><br />
+        <input type="number" id="task-3-number-1" /><br /><br />
+        <label for="task-3-number-2">Enter the second Number: </label><br /><br />
+        <input type="number" id="task-3-number-2"><br /><br />
+        <button onclick="multiplyNumbers(event)">Multiply</button>
+        <button onclick="divideNumbers(event)">Divide</button>
+    </form>
+    <p id="task-3"></p>
+    <script type="text/javascript">
+        function multiplyNumbers(e) {
+            e.preventDefault();
+            const numberOne = document.getElementById('task-3-number-1');
+            const numberTwo = document.getElementById('task-3-number-2');
+            const para = document.getElementById('task-3');
+            para.innerText = `${numberOne.value} x ${numberTwo.value} = ${Number(numberOne.value) * Number(numberTwo.value)}`;
+        }
+
+        function divideNumbers(e) {
+            e.preventDefault();
+            const numberOne = document.getElementById('task-3-number-1');
+            const numberTwo = document.getElementById('task-3-number-2');
+            const para = document.getElementById('task-3');
+            if (numberTwo.value == 0) {
+                para.innerText = 'Zero Division is not allowed.'
+            }
+            else {
+                para.innerText = `${numberOne.value} / ${numberTwo.value} = ${Number(numberOne.value) / Number(numberTwo.value)}`;
+            }
+        }
+    </script>
+    <!-- Task 3 ends here -->
+    <br />
+    <hr><br />
+
+    <!-- Task 4 -->
+    <h1>Task 4</h1>
+    <button onclick="showDate()">Show Date</button><br /><br />
+    <p id="task-4-date"></p><br /><br />
+    <button onclick="showTime()">Show Time</button><br /><br />
+    <p id="task-4-time"></p><br /><br />
+
+    <script type="text/javascript">
+        function showDate() {
+            const date = new Date();
+            const para = document.getElementById('task-4-date');
+            para.innerText = `Today's Date: ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+        }
+        function showTime() {
+            const para = document.getElementById('task-4-time');
+            setInterval(() => {
+                para.innerHTML = new Date();
+            }, 1000);
+        }
+    </script>
+    <!-- Task 4 ends here -->
+    <br />
+    <hr><br />
+
+    <!-- Task 5 -->
+    <h1>Task 5</h1>
+    <form>
+        <div>
+            Name: <input type="text" id="task-5-name" oninput="checkName()">
+            <span>
+                <p id="task-5-p-name"></p>
+            </span>
+        </div>
+        <div>
+            Email: <input type="email" id="task-5-email" oninput="checkEmail()">
+            <span>
+                <p id="task-5-p-email"></p>
+            </span>
+        </div>
+        <div>
+            Website: <input type="url" id="task-5-website" oninput="checkURL()">
+            <span>
+                <p id="task-5-p-website"></p>
+            </span>
+        </div>
+        <div>
+            Message: <textarea id="task-5-message" oninput="checkMessage()" rows="5" cols="40"></textarea>
+            <span>
+                <p id="task-5-p-message"></p>
+            </span>
+        </div>
+        <button type="submit">Don't Touch!</button>
+    </form>
+
+    <script type="text/javascript">
+        function checkName() {
+            const inputName = document.getElementById("task-5-name");
+            const p = document.getElementById("task-5-p-name");
+            if (!inputName.value) {
+                p.innerText = "Name field is required.";
+                p.style.color = "red";
+                inputName.style.borderColor = "red";
+            }
+            else {
+                p.innerText = ""
+            }
+        }
+
+        function checkEmail() {
+            const inputName = document.getElementById("task-5-email");
+            const p = document.getElementById("task-5-p-email");
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            if (!inputName.value) {
+                p.innerText = "Email field is required.";
+                p.style.color = "red";
+                inputName.style.borderColor = "red";
+            }
+            else if (!emailRegex.test(inputName.value)) {
+                p.innerText = "Invalid Email";
+                p.style.color = "red";
+                inputName.style.borderColor = "red";
+            }
+            else {
+                p.innerText = ""
+            }
+        }
+
+        function checkURL() {
+            const inputName = document.getElementById("task-5-website");
+            const p = document.getElementById("task-5-p-website");
+            const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,4})(\/\S*)?$/;
+
+            if (!inputName.value) {
+                p.innerText = "Website field is required.";
+                p.style.color = "red";
+                inputName.style.borderColor = "red";
+            }
+            else if (!urlRegex.test(inputName.value)) {
+                p.innerText = "Invalid URL";
+                p.style.color = "red";
+                inputName.style.borderColor = "red";
+            }
+            else {
+                p.innerText = ""
+            }
+        }
+
+        function checkMessage() {
+            const inputName = document.getElementById("task-5-message");
+            const p = document.getElementById("task-5-p-message");
+            if (!inputName.value) {
+                p.innerText = "Message field is required.";
+                p.style.color = "red";
+                inputName.style.borderColor = "red";
+            }
+            else {
+                p.innerText = ""
+            }
+        }
+    </script>
+    <!-- Task 5 ends Here -->
+    <br />
+    <hr><br />
+
+    <!-- Task 6 -->
+    <h1>Task 6</h1>
+    <div class="login-box" id="login-box">
+        <h2>Login</h2>
+        <input type="text" class="login-input" placeholder="Username">
+        <input type="password" class="login-input" placeholder="Password">
+        <button class="login-button">Login</button><br /><br />
+        Don't have an account? <a style="text-decoration: underline; color: green;" onclick="showSignup()"> Signup?</a>
+    </div>
+    <div class="login-box" id="signup-box">
+        <h2>Signup</h2>
+        <input type="text" class="login-input" placeholder="Name">
+        <input type="text" class="login-input" placeholder="Email">
+        <input type="text" class="login-input" placeholder="Username">
+        <input type="password" class="login-input" placeholder="Password">
+        <button class="login-button">Signup</button><br /><br />
+        Already have an account? <a style="text-decoration: underline; color: green;" onclick="showLogin()"> Login?</a>
+    </div>
+
+    <script type="text/javascript">
+        function showLogin() {
+            const login = document.getElementById('login-box');
+            const signup = document.getElementById('signup-box');
+            signup.hidden = true;
+            login.hidden = false;
+        }
+        function showSignup() {
+            const login = document.getElementById('login-box');
+            const signup = document.getElementById('signup-box');
+            signup.hidden = false;
+            login.hidden = true;
+        }
+        showLogin();
+    </script>
+    <!-- Task 6 ends here -->
+    <br />
+    <hr><br />
+
+    <!-- Task 7 -->
+    <h1>Task 7</h1>
+    <div id="container">
+        <img id="moving-image" src="./animate.jpg" alt="Moving Image" height="100" width="140">
+    </div>
+    <button id="startButton">Start</button>
+    <button id="stopButton">Stop</button>
+
+    <script>
+        const movingImage = document.getElementById("moving-image");
+        const startButton = document.getElementById("startButton");
+        const stopButton = document.getElementById("stopButton");
+
+        let animationPaused = true;
+        movingImage.style.animationPlayState = "paused";
+
+        startButton.addEventListener("click", () => {
+            if (animationPaused) {
+                movingImage.style.animationPlayState = "running";
+                animationPaused = false;
+            }
+        });
+
+        stopButton.addEventListener("click", () => {
+            movingImage.style.animationPlayState = "paused";
+            animationPaused = true;
+        });
+    </script>
+    <!-- Task 7 ends here -->
+    <br />
+    <hr><br />
+
+    <!-- Task 8 -->
+    <h1>Task 8</h1>
+    <div class="container">
+        <form id="registrationForm">
+            <div>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" class="input">
+                <span id="firstNameError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" class="input">
+                <span id="lastNameError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="input">
+                <span id="emailError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="input">
+                <span id="passwordError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="confirmPassword">Re-enter Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="input">
+                <span id="confirmPasswordError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" class="input"> 
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <span id="genderError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" class="input">
+                <span id="ageError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" class="input">
+                <span id="phoneNumberError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" class="input"></textarea>
+                <span id="addressError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" class="input">
+                <span id="stateError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="country">Country:</label>
+                <select id="country" name="country" class="input">
+                    <option value="">Select Country</option>
+                    <option value="us">United States</option>
+                    <option value="ca">Canada</option>
+                    <!-- Add more countries as needed -->
+                </select>
+                <span id="countryError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Languages Known:</label>
+                <input type="checkbox" id="tamil" name="languages" value="Tamil" class="input">
+                <label for="tamil">Tamil</label>
+                <input type="checkbox" id="english" name="languages" value="English" class="input">
+                <label for="english">English</label>
+                <input type="checkbox" id="hindi" name="languages" value="Hindi" class="input">
+                <label for="hindi">Hindi</label>
+                <input type="checkbox" id="telugu" name="languages" value="Telugu" class="input">
+                <label for="telugu">Telugu</label>
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" id="declaration" name="declaration" value="accepted" class="input">
+                <label for="declaration">I accept the terms and conditions.</label>
+                <span id="declarationError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" onclick="validateForm(event)">Register</button>
+            </div>
+        </form>
+    </div>
+    <br/>
+    <br/>
+
+    <script>
+        function validateForm(e) {
+            e.preventDefault();
+            // Reset error messages
+            clearErrors();
+
+            // Validation for each field
+            let isValid = true;
+
+            const firstName = document.getElementById('firstName').value;
+            if (!firstName.trim()) {
+                displayError('firstName', 'First Name is required.');
+                isValid = false;
+            }
+
+            const lastName = document.getElementById('lastName').value;
+            if (!lastName.trim()) {
+                displayError('lastName', 'Last Name is required.');
+                isValid = false;
+            }
+
+            const email = document.getElementById('email').value;
+            if (!validateEmail(email)) {
+                displayError('email', 'Valid Email is required.');
+                isValid = false;
+            }
+
+            const password = document.getElementById('password').value;
+            if (!password.trim()) {
+                displayError('password', 'Password is required.');
+                isValid = false;
+            }
+
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                displayError('confirmPassword', 'Passwords do not match.');
+                isValid = false;
+            }
+
+            const gender = document.getElementById('gender').value;
+            if (!gender) {
+                displayError('gender', 'Gender is required.');
+                isValid = false;
+            }
+
+            const age = document.getElementById('age').value;
+            if (!age.trim()) {
+                displayError('age', 'Age is required.');
+                isValid = false;
+            }
+
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            if (!phoneNumber.trim()) {
+                displayError('phoneNumber', 'Phone Number is required.');
+                isValid = false;
+            }
+
+            const address = document.getElementById('address').value;
+            if (!address.trim()) {
+                displayError('address', 'Address is required.');
+                isValid = false;
+            }
+
+            const state = document.getElementById('state').value;
+            if (!state.trim()) {
+                displayError('state', 'State is required.');
+                isValid = false;
+            }
+
+            const country = document.getElementById('country').value;
+            if (!country) {
+                displayError('country', 'Country is required.');
+                isValid = false;
+            }
+
+            const languages = document.querySelectorAll('input[name="languages"]:checked');
+            if (languages.length === 0) {
+                displayError('languages', 'At least one language is required.');
+                isValid = false;
+            }
+
+            const declaration = document.getElementById('declaration').checked;
+            if (!declaration) {
+                displayError('declaration', 'You must accept the terms and conditions.');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function validateEmail(email) {
+            // Basic email validation regex
+            const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+            return emailRegex.test(email);
+        }
+
+        function displayError(fieldId, errorMessage) {
+            const errorSpan = document.getElementById(`${fieldId}Error`);
+            errorSpan.textContent = errorMessage;
+        }
+
+        function clearErrors() {
+            const errorSpans = document.querySelectorAll('.error');
+            errorSpans.forEach(span => {
+                span.textContent = '';
+            });
+        }
+    </script>
+    <!-- Task 8 ends here -->
+</body>
+
+</html>
